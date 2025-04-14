@@ -24,10 +24,9 @@ const int  __getvsn__(std::vector<std::string> &IAC)
     // TODO: Add here future logging func (Logi nyzhno tozhe delatb ny za chto)
 
     std::cerr << "\033[31m" << exc.what() << "\033[0m" << std::endl;
+    return 1;
   }
 }
-
-
 
 int main() 
 {
@@ -35,5 +34,4 @@ int main()
   for(auto c : IAC) {
     std::cout << "IAC CONFIGURATION: " << c << std::endl;
   }
-
 }

@@ -5,7 +5,7 @@
 #include <Windows.h>
 #include <vector>
 #include <algorithm>
-
+#include <fstream>
 
 constexpr bool __debug = true;
 std::vector<std::string> IAC = {}; 
@@ -21,10 +21,7 @@ const int  __getvsn__(std::vector<std::string> &IAC)
     } 
     throw std::logic_error("volume is not exist/found");
   } catch(const std::logic_error& exc) {
-  
-    // TODO: Add here future logging func
-
-    std::cerr << "\033[31m" << exc.what() << "\033[0m" << std::endl;
+    logError(exc.what());
     return -1; 
   }
   return -2;
@@ -32,8 +29,13 @@ const int  __getvsn__(std::vector<std::string> &IAC)
 
 int main() 
 {
+  if constexpr(__debug) {
+    glLogger.enableFLOG();
+  }
   __getvsn__(IAC);
   for(auto c : IAC) {
     std::cout << "IAC CONFIGURATION: " << c << std::endl;
   }
+  std::cin.get();
+
 }

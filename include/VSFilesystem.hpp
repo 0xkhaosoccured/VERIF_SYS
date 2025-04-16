@@ -2,6 +2,8 @@
 
 // TODO: Сжатие файлов для будущего создания около-репачного метода упаковывания файлов
 
+namespace fs = std::filesystem;
+
 namespace VSFilesystem
 {
     class Header

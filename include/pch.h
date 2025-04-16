@@ -5,3 +5,6 @@
 #include <ctime>
 #include <Windows.h>
 #include <fstream>
+#include <fileapi.h>
+#include <Windows.h>
+#include <algorithm>

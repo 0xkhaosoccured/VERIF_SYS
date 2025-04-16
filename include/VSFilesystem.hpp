@@ -13,6 +13,7 @@ namespace VSFilesystem
     class Core
     {
         virtual void compress();
+        virtual void compress();
         virtual void decompress();
     };
 

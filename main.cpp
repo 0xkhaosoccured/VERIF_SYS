@@ -1,11 +1,6 @@
 #define _AMD64_
 #include "include/pch.h"
 #include "include/logging.hpp"
-#include <fileapi.h>
-#include <Windows.h>
-#include <vector>
-#include <algorithm>
-#include <fstream>
 
 constexpr bool __debug = true;
 std::vector<std::string> IAC = {}; 
@@ -29,13 +24,19 @@ const int  __getvsn__(std::vector<std::string> &IAC)
 
 int main() 
 {
-  if constexpr(__debug) {
-    glLogger.enableFLOG();
-  }
-  __getvsn__(IAC);
-  for(auto c : IAC) {
-    std::cout << "IAC CONFIGURATION: " << c << std::endl;
-  }
+  // if constexpr(__debug) {
+  //   glLogger.enableFLOG();
+  // }
+  // __getvsn__(IAC);
+  // for(auto c : IAC) {
+  //   std::cout << "IAC CONFIGURATION: " << c << std::endl;
+  // }
+  // std::cin.get();
+
+  std::string str = "Hello, World";
+  std::cerr << str << std::endl;
+  std::size_t strh = std::hash<std::string>{}(str);
+  std::cerr << strh << std::endl;
   std::cin.get();
 
 }

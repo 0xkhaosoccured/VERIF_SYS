@@ -33,10 +33,28 @@ int main()
   // }
   // std::cin.get();
 
-  std::string str = "Hello, World";
-  std::cerr << str << std::endl;
-  std::size_t strh = std::hash<std::string>{}(str);
-  std::cerr << strh << std::endl;
-  std::cin.get();
+  std::ifstream input("BREATH.aep", std::ios::binary);
+  std::vector<Bytef> original_data((std::istreambuf_iterator<char>(input)), std::istreambuf_iterator<char>());
+  uLong source_size = original_data.size();
+  uLongf compress_buff_size = compressBound(source_size);
+  std::vector<Bytef> compressed_data(compress_buff_size);
 
+  int res = compress2(
+      compressed_data.data(),  
+      &compress_buff_size,      
+      original_data.data(),     
+      source_size,
+      Z_BEST_COMPRESSION
+  );
+
+  std::cerr << std::setw(10) << "Original size:" 
+          << std::setw(10) <<   source_size / (1024.0 * 1024.0)  
+          << "MB" << std::endl;
+
+  std::cerr << std::setw(10) << "Compressed size:" 
+            << std::setw(10) <<  compress_buff_size / (1024.0 * 1024.0) 
+            << "MB" << std::endl;
+  
+  
+  std::cin.get();
 }

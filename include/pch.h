@@ -9,3 +9,6 @@
 #include <Windows.h>
 #include <algorithm>
 #include <filesystem>
+#include "zlib/include/zlib.h"
+#include "zlib/include/zconf.h"
+#include <iomanip>

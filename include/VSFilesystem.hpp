@@ -23,5 +23,5 @@ namespace VSFilesystem
     {
         public:
         bool fileverif(std::vector<uint64_t>& hashes);
-    }
+    };
 }

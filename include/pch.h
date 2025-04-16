@@ -12,3 +12,5 @@
 #include "zlib/include/zlib.h"
 #include "zlib/include/zconf.h"
 #include <iomanip>
+#include "xxhash/include/xxhash.h"
+#include <sstream>

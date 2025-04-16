@@ -1,5 +1,10 @@
 # WHAT IS THIS?
 
-This pet-project was created for Anti-Piracy targets inside of AMV Editing Community, where are leaking right now is the most popular thing and most authors are afraid for their packs. With this tool you can identify all buyers and provide them with a very convenient installer for your product. If a leak occurs, you will be able to trace the original owner.
+> Will be available soon
 
-# HOW TO BUILD
+# Kudos
+
+[xxhash](https://github.com/Cyan4973/xxHash) - xxHash is an Extremely fast Hash algorithm, processing at RAM speed limits.
+
+[zlib](https://github.com/madler/zlib) - zlib is a general purpose data compression library.
+

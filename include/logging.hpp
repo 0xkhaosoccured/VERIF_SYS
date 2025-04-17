@@ -13,19 +13,11 @@ namespace Logger
   class Log
   {
     public:
-      void logMessage(LogLvl lvl,const std::string& message)
+      
+      void logWrapper(LogLvl lvl,const std::string& message) 
       {
-        std::time_t now; std::tm* tm; std::string logLine;
-
-        now = std::time(nullptr);
-        tm = std::localtime(&now);
-        char timeStr[20];
-        std::strftime(timeStr, sizeof(timeStr),"%H:%M:%S",tm);
-        logLine = "[" + std::string(timeStr) + "] " + lvlcl[lvl] + ": " + message;
-        std::cerr << logLine << std::endl;
-        if(isFOP && logFile.is_open()) {
-          logFile << logLine << std::endl;
-        }
+        std::thread th(&Log::logMessage, this, lvl, message);
+        th.join();
       }
 
       void enableFLOG() 
@@ -49,10 +41,27 @@ namespace Logger
     private:
       bool isFOP = false;
       std::ofstream logFile;
+      std::mutex mtx;
+
+      void logMessage(LogLvl lvl,const std::string& message)
+      {
+        std::lock_guard<std::mutex> lock(mtx);
+        std::time_t now; std::tm* tm; std::string logLine;
+
+        now = std::time(nullptr);
+        tm = std::localtime(&now);
+        char timeStr[20];
+        std::strftime(timeStr, sizeof(timeStr),"%H:%M:%S",tm);
+        logLine = "[" + std::string(timeStr) + "] " + lvlcl[lvl] + ": " + message;
+        std::cerr << logLine << std::endl;
+        if(isFOP && logFile.is_open()) {
+          logFile << logLine << std::endl;
+        }
+      }
   };
 }
 
 inline Logger::Log glLogger;
 
-#define logSuccess(message) glLogger.logMessage(SUCCESS,message)
-#define logError(message) glLogger.logMessage(FAIL, message)
+#define logSuccess(message) glLogger.logWrapper(SUCCESS,message)
+#define logError(message) glLogger.logWrapper(FAIL, message)

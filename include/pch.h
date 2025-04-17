@@ -14,3 +14,6 @@
 #include <iomanip>
 #include "xxhash/include/xxhash.h"
 #include <sstream>
+#include <threads.h>
+#include <thread>
+#include <mutex>

@@ -9,7 +9,8 @@ std::vector<std::string> IAC = {};
 const int  __getvsn__(std::vector<std::string> &IAC) 
 {
   try {
-    char buffer[MAX_PATH]; DWORD sysbuffer; DWORD vsn; DWORD filesf;
+    char buffer[MAX_PATH]; 
+    DWORD sysbuffer, vsn, filesf;
     if(GetVolumeInformationA("C:\\", buffer, sizeof(buffer), &vsn, &sysbuffer, &filesf, 0, 0)) {
       if constexpr(__debug) {logSuccess("Volume found and VSN extracted. . .");}
       IAC.push_back(std::to_string(vsn));
